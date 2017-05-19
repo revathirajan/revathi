@@ -13,40 +13,10 @@
    numeric
    
 
-1. Introduction
-===============
-2. Purpose of this Document	
-===========================
-3. Quorum Architecture – Transaction processing flow		
-====================================================
-4. Pre-Requisite	
-=================
-5. Installation Steps		
+1.Eris Cluster Creation
 =======================
-6. Configuration Steps:			
-========================
-Ethereum Configuration:	
------------------------
-Constellation Configuration:	
-----------------------------
-Bootnode Configuration:	
------------------------
-7. Starting the Quorum Node:	
-=============================
-Starting the Bootnode:	
-----------------------
-Staring the constellation:	
---------------------------
-Starting the geth:	
-------------------
-8. Starting the 7 Quorum nodes on Single AWS Instance (Clustering)	
-==================================================================
-9. Starting the 7 Quorum Nodes on 7 different AWS Instance (Clustering)	
-=========================================================================
-10. FAQ	
-=======
-Appendix:	
-=========
+Prerequisites
+-------------
         1.1.Hardware:	  
 			- One AWS instance for root node
 			- Two AWS instances for validator nodes

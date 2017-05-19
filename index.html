@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Introduction &mdash; Quorum Documentation 28-07-2017 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Quorum Documentation 28-07-2017 documentation" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Quorum Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">1. Introduction</a></li>
+<li><a class="reference internal" href="#purpose-of-this-document">2. Purpose of this Document</a></li>
+<li><a class="reference internal" href="#quorum-architecture-transaction-processing-flow">3. Quorum Architecture - Transaction processing flow</a></li>
+<li><a class="reference internal" href="#pre-requisite">4. Pre-Requisite</a></li>
+<li><a class="reference internal" href="#installation-steps">5. Installation Steps</a></li>
+<li><a class="reference internal" href="#configuration-steps">6. Configuration Steps:</a><ul>
+<li><a class="reference internal" href="#ethereum-configuration">Ethereum Configuration:</a></li>
+<li><a class="reference internal" href="#constellation-configuration">Constellation Configuration:</a></li>
+<li><a class="reference internal" href="#bootnode-configuration">Bootnode Configuration:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#starting-the-quorum-node">7. Starting the Quorum Node:</a><ul>
+<li><a class="reference internal" href="#starting-the-bootnode">Starting the Bootnode:</a></li>
+<li><a class="reference internal" href="#staring-the-constellation">Staring the constellation:</a></li>
+<li><a class="reference internal" href="#starting-the-geth">Starting the geth:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#starting-the-7-quorum-nodes-on-single-aws-instance-clustering">8. Starting the 7 Quorum nodes on Single AWS Instance (Clustering)</a></li>
+<li><a class="reference internal" href="#starting-the-7-quorum-nodes-on-7-different-aws-instance-clustering">9. Starting the 7 Quorum Nodes on 7 different AWS Instance (Clustering)</a></li>
+<li><a class="reference internal" href="#faq">10. FAQ</a></li>
+<li><a class="reference internal" href="#appendix">Appendix:</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Quorum Documentation</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>1. Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><blockquote>
+<div><p>Quorum is an Ethereum-based distributed ledger protocol that supports transaction and contract privacy. The primary features of Quorum are</p>
+<blockquote>
+<div><ul class="simple">
+<li>Transaction and contract privacy.</li>
+<li>Voting-based consensus mechanism.</li>
+<li>Network and peer permissions management.</li>
+<li>Higher performance.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>Quorum includes the powerful feature of support for private and public transactions.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Private Transactions: Transactions whose payloads are only visible to the network participants whose public keys are specified in the privateFor parameter of the transaction. privatefor can take multiple addresses in a comma-separated list.</li>
+<li>Public Transactions: Transactions whose payloads are visible to all participants of the same Quorum network. These are created as standard Ethereum transactions in the usual way.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="purpose-of-this-document">
+<h1>2. Purpose of this Document<a class="headerlink" href="#purpose-of-this-document" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>This document aims to provide a comprehensive QUORUM block-chain framework startup guide.</p>
+<p><strong>The document at a high level covers the following -</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>How QUORUM is differentiated from the similar DL technologies.</li>
+<li>Brief understanding about the QUORUM transaction flow.</li>
+<li>How to setup Quorum and configure cluster</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="quorum-architecture-transaction-processing-flow">
+<h1>3. Quorum Architecture - Transaction processing flow<a class="headerlink" href="#quorum-architecture-transaction-processing-flow" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><blockquote>
+<div><a class="reference internal image-reference" href="_images/t1.png"><img alt="_images/t1.png" class="align-center" src="_images/t1.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+<p>In this example, Party A and Party B are party to Transaction AB, whilst Party C is not.</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><ol class="arabic">
+<li><p class="first">Party A sends a Transaction to their Quorum Node, specifying the Transaction payload and setting privateFor to be the public keys for Parties A and B</p>
+</li>
+<li><p class="first">Party A&#8217;s Quorum Node passes the Transaction on to its paired Transaction Manager, requesting for it to store the Transaction payload</p>
+</li>
+<li><p class="first">Party A&#8217;s Transaction Manager makes a call to its associated Enclave to validate the sender and encrypt the payload</p>
+</li>
+<li><p class="first">Party A&#8217;s Enclave checks the private key for Party A and, once validated, performs the Transaction conversion. This entails:</p>
+<blockquote>
+<div><ul class="simple">
+<li>generating a symmetric key and a random Nonce.</li>
+<li>encrypting the Transaction payload and Nonce with the symmetric key from i.</li>
+<li>calculating the SHA3-512 hash of the encrypted payload from ii.</li>
+<li>iterating through the list of Transaction recipients, in this case Parties A and B, and encrypting the symmetric key from i. with the recipient&#8217;s public key (PGP encryption)</li>
+<li>returning the encrypted payload from step ii., the hash from step iii. and the encrypted keys (for each recipient) from step iv. to the Transaction Manager</li>
+<li>Party A&#8217;s Transaction manager then stores the encrypted payload (encrypted with the symmetric key) and encrypted symmetric key using the hash as the index, and then securely transfers (via HTTPS) the hash, encrypted payload, and encrypted symmetric key that has been encrypted with Party B&#8217;s public key to Party B&#8217;s Transaction Manager. Party B&#8217;s Transaction Manager responds with an Ack/Nack response. Note that if Party A does not receive a response/receives a Nack from Party B then the Transaction will not be propagated to the network. It is a prerequisite for the recipients to store the communicated payload.</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Once the data transmission to Party B&#8217;s Transaction Manager has been successful, Party A&#8217;s Transaction Manager returns the hash to the Quorum Node which then replaces the Transaction&#8217;s original payload with that hash, and changes the transaction&#8217;s V value to 37 or 38, which will indicate to other nodes that this hash represents a private transaction with an associated encrypted payload as opposed to a public transaction with nonsensical bytecode.</li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li>The Transaction is then propagated to the rest of the network using the standard Ethereum P2P Protocol.</li>
+<li>A block containing Transaction AB is created and distributed to each Party on the network.</li>
+<li><dl class="first docutils">
+<dt>In processing the block, all Parties will attempt to process the Transaction. Each Quorum node will recognise a V value of 37</dt>
+<dd>or 38, identifying the Transaction as one whose payload requires decrypting, and make a call to their local Transaction Manager to determine if they hold the Transaction (using the hash as the index to look up).</dd>
+</dl>
+</li>
+<li>Since Party C does not hold the Transaction, it will receive a NotARecipient message and will skip the Transaction - it will not update its Private StateDB. Party A and B will look up the hash in their local Transaction Managers and identify that they do hold the Transaction. Each will then make a call to its Enclave, passing in the Encrypted Payload, Encrypted symmetric key and Signature.</li>
+<li>The Enclave validates the signature and then decrypts the symmetric key using the Party&#8217;s private key that is held in The Enclave, decrypts the Transaction Payload using the now-revealed symmetric key and returns the decrypted payload to the Transaction Manager.</li>
+<li>The Transaction Managers for Parties A and B then send the decrypted payload to the EVM for contract code execution. This execution will update the state in the Quorum Node&#8217;s Private StateDB only. NOTE: once the code has been executed it is discarded so is never available for reading without going through the above process.</li>
+</ol>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="pre-requisite">
+<h1>4. Pre-Requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Ubuntu 16.04</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="installation-steps">
+<h1>5. Installation Steps<a class="headerlink" href="#installation-steps" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p class="first">From the home directory create a directory &#8220;quorum&#8221;</p>
+</li>
+<li><p class="first">cd quorum</p>
+</li>
+<li><p class="first">Install Ethereum with the following command line command</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t2.png"><img alt="_images/t2.png" class="align-center" src="_images/t2.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Install the Constellation with the following command line command</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t3.png"><img alt="_images/t3.png" class="align-center" src="_images/t3.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Install golang with the following command line command</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t4.png"><img alt="_images/t4.png" class="align-center" src="_images/t4.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Install Quorum with the following command line command</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t5.png"><img alt="_images/t5.png" class="align-center" src="_images/t5.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Run the following commands to run the geth and bootnode</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t6.png"><img alt="_images/t6.png" class="align-center" src="_images/t6.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="configuration-steps">
+<h1>6. Configuration Steps:<a class="headerlink" href="#configuration-steps" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/T7.png"><img alt="_images/T7.png" src="_images/T7.png" style="width: 100px; height: 100px;" /></a>
+</div></blockquote>
+<div class="section" id="ethereum-configuration">
+<h2>Ethereum Configuration:<a class="headerlink" href="#ethereum-configuration" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>From the following directory /home/ubuntu/quorum, create the following directory</li>
+</ol>
+<a class="reference internal image-reference" href="_images/T8.png"><img alt="_images/T8.png" class="align-center" src="_images/T8.png" style="width: 600px; height: 500px;" /></a>
+<ol class="loweralpha simple" start="2">
+<li>Save the attached genesis.json to the /home/ubuntu/quorum directory.</li>
+<li>Inside the datadir create the following directory</li>
+</ol>
+<a class="reference internal image-reference" href="_images/T9.png"><img alt="_images/T9.png" class="align-center" src="_images/T9.png" style="width: 600px; height: 500px;" /></a>
+<ol class="loweralpha simple" start="4">
+<li>From the /home/ubuntu/quorum directory location, Initialize geth</li>
+</ol>
+<a class="reference internal image-reference" href="_images/T10.png"><img alt="_images/T10.png" class="align-center" src="_images/T10.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="constellation-configuration">
+<h2>Constellation Configuration:<a class="headerlink" href="#constellation-configuration" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>From the following directory /home/ubuntu/quorum. Create a directory named &#8220;key&#8221;</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t11.png"><img alt="_images/t11.png" class="align-center" src="_images/t11.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li>From the directory location /home/ubuntu/quorum/key. Run the following command twice with different key name</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t12.png"><img alt="_images/t12.png" class="align-center" src="_images/t12.png" style="width: 600px; height: 500px;" /></a>
+<p><strong>Note:</strong> It should create 2 files with name &lt;&lt;key name 1&gt;&gt;.key and &lt;&lt;key name 1&gt;&gt;.pub</p>
+<a class="reference internal image-reference" href="_images/t13.png"><img alt="_images/t13.png" class="align-center" src="_images/t13.png" style="width: 600px; height: 500px;" /></a>
+<p><strong>Note:</strong> It should create 2 files with name &lt;&lt;key name 2&gt;&gt;.key and &lt;&lt;key name 2&gt;&gt;.pub</p>
+</div></blockquote>
+<ol class="loweralpha simple" start="3">
+<li>From the directory location /home/ubuntu/quorum. Create a constellation configuration file.
+&lt;&lt;Contellation Name&gt;&gt;.conf   (e.g.) constellation.conf and copy the below content to the file</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t14.png"><img alt="_images/t14.png" class="align-center" src="_images/t14.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="bootnode-configuration">
+<h2>Bootnode Configuration:<a class="headerlink" href="#bootnode-configuration" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t15.png"><img alt="_images/t15.png" class="align-center" src="_images/t15.png" style="width: 600px; height: 500px;" /></a>
+<p>We will get a bootnode key  &lt;&lt; BOOTNODE_KEYHEX &gt;&gt;store that boot node key to a file
+Eg: In the below example the content shaded on yellow is the bootnode.key</p>
+<a class="reference internal image-reference" href="_images/t16.png"><img alt="_images/t16.png" class="align-center" src="_images/t16.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="starting-the-quorum-node">
+<h1>7. Starting the Quorum Node:<a class="headerlink" href="#starting-the-quorum-node" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="starting-the-bootnode">
+<h2>Starting the Bootnode:<a class="headerlink" href="#starting-the-bootnode" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Run the following command on the command line from the directory location /home/ubuntu/quorum</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/T17.png"><img alt="_images/T17.png" class="align-center" src="_images/T17.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="staring-the-constellation">
+<h2>Staring the constellation:<a class="headerlink" href="#staring-the-constellation" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>From the following directory /home/ubuntu/quorum, execute the following command</p>
+<a class="reference internal image-reference" href="_images/T18.png"><img alt="_images/T18.png" class="align-center" src="_images/T18.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</div>
+<div class="section" id="starting-the-geth">
+<h2>Starting the geth:<a class="headerlink" href="#starting-the-geth" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div><ul>
+<li><p class="first">Get the boot node url from bootnode.log</p>
+<p>For example: the BOOTNODE_ENODE should look like the below mentioned format</p>
+</li>
+</ul>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t19.png"><img alt="_images/t19.png" class="align-center" src="_images/t19.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+<ul>
+<li><p class="first">Run the script to get a geth console and issue the following command to set up a coinbase account for mining:</p>
+<a class="reference internal image-reference" href="_images/t20.png"><img alt="_images/t20.png" class="align-center" src="_images/t20.png" style="width: 600px; height: 500px;" /></a>
+<p>The hex string is your new coinbase address.  It can be viewed at any time with:</p>
+<a class="reference internal image-reference" href="_images/t21.png"><img alt="_images/t21.png" class="align-center" src="_images/t21.png" style="width: 600px; height: 500px;" /></a>
+</li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p class="first">Run the above command and setup 2 accounts</p>
+<blockquote>
+<div><ul class="simple">
+<li>One account for the Voting account</li>
+<li>Another account for Block Maker account</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Execute the following command on command line</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t23.png"><img alt="_images/t23.png" class="align-center" src="_images/t23.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Run the following command and see if you are able to login to the geth console.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t24.png"><img alt="_images/t24.png" class="align-center" src="_images/t24.png" style="width: 600px; height: 500px;" /></a>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="starting-the-7-quorum-nodes-on-single-aws-instance-clustering">
+<h1>8. Starting the 7 Quorum nodes on Single AWS Instance (Clustering)<a class="headerlink" href="#starting-the-7-quorum-nodes-on-single-aws-instance-clustering" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><ol class="loweralpha">
+<li><p class="first">Complete all the Installation Steps</p>
+</li>
+<li><a class="first reference internal image-reference" href="_images/t25.png"><img alt="_images/t25.png" src="_images/t25.png" style="width: 100px; height: 100px;" /></a>
+</li>
+<li><p class="first">Extract the above zip file</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>Run the init.sh: Initialize accounts and keystores</li>
+<li>Run the start.sh: Launch constellation and geth nodes</li>
+<li>Run the stop.sh: Stop all constellation and geth nodes</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p class="first">Then you can run the private transaction.</p>
+</li>
+<li><dl class="first docutils">
+<dt>In the attached zip file the following configuration is made</dt>
+<dd><ol class="first loweralpha simple">
+<li>Node 1: Special Node for the transaction</li>
+<li>Node 2: Configured for  the voteaccount and the blockmaker</li>
+<li>Node 4: Configured for  the voteaccount</li>
+<li>Node 5: Configured for  the voteaccount</li>
+<li>Node 5,6,7 Configured to make transactions</li>
+<li>Clustering :</li>
+</ol>
+<blockquote class="last">
+<div><ol class="loweralpha simple">
+<li>Constellation Clustering is made through the otherNodeUrls configuration
+For example: In the node2.conf - node7.conf the node urls are pointing to the node1.conf url.
+Node2.conf file content shown in the below screenshot</li>
+</ol>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/t26.png"><img alt="_images/t26.png" class="align-center" src="_images/t26.png" style="width: 600px; height: 500px;" /></a>
+<dl class="docutils">
+<dt>It means the constellation of the node1 - Node 7 is clustered through the</dt>
+<dd><p class="first last">otherNodeUrls = [&#8220;<a class="reference external" href="http://127.0.0.1:9000/">http://127.0.0.1:9000/</a>&#8220;]
+Note: the otherNodeUrls is an array list. So you can configure list of urls.</p>
+</dd>
+</dl>
+</div></blockquote>
+<ol class="loweralpha simple" start="2">
+<li><dl class="first docutils">
+<dt>Ethereum Clustering: The ethereum is clustered through the boot node cluster.</dt>
+<dd>The first time a node connects to the network it uses one of the predefined bootnodes. Through these bootnodes an ethereum node can join the network and find other nodes.
+Refer: the start.sh on how a bootnode is started and how it is used for each node to join the network.</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="starting-the-7-quorum-nodes-on-7-different-aws-instance-clustering">
+<h1>9. Starting the 7 Quorum Nodes on 7 different AWS Instance (Clustering)<a class="headerlink" href="#starting-the-7-quorum-nodes-on-7-different-aws-instance-clustering" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="faq">
+<h1>10. FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="appendix">
+<h1>Appendix:<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div>Please Visit the following website for help</div></blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/jpmorganchase/quorum/wiki/Transaction-Processing">https://github.com/jpmorganchase/quorum/wiki/Transaction-Processing</a></li>
+<li><a class="reference external" href="https://ethereum.stackexchange.com/questions/8948/difference-between-full-node-and-bootstrap-nodes-in-ethereum">https://ethereum.stackexchange.com/questions/8948/difference-between-full-node-and-bootstrap-nodes-in-ethereum</a></li>
+<li><a class="reference external" href="https://github.com/jpmorganchase/quorum/blob/master/docs/api.md#quorumchain-apis">https://github.com/jpmorganchase/quorum/blob/master/docs/api.md#quorumchain-apis</a></li>
+<li><a class="reference external" href="https://github.com/jpmorganchase/quorum/issues/113">https://github.com/jpmorganchase/quorum/issues/113</a></li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017 Nagarevathi.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'28-07-2017',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
